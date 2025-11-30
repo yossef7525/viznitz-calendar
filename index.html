@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מנהל יומני Google Calendar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div class="header-left">
+                <div class="header-icon">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                </div>
+                <h1 class="header-title">יומן דחסידי ויזניץ</h1>
+            </div>
+            <div class="header-controls">
+                <button class="add-event-btn" onclick="openAddEventModal()">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                    הוסף אירוע
+                </button>
+                <button class="toggle-sidebar-btn" id="toggleSidebarBtn" onclick="toggleSidebar()">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="9" y1="9" x2="15" y2="9"></line>
+                        <line x1="9" y1="12" x2="15" y2="12"></line>
+                        <line x1="9" y1="15" x2="15" y2="15"></line>
+                    </svg>
+                </button>
+                <div class="header-date" id="currentDate"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="grid">
+            <div class="sidebar">
+                <div class="sidebar-header">
+                    <svg class="sidebar-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path d="M9 12l2 2 4-4"></path>
+                        <circle cx="12" cy="12" r="10"></circle>
+                    </svg>
+                    <h2 class="sidebar-title">בחירת יומנים</h2>
+                </div>
+
+                <div class="calendar-list" id="allCalendars"></div>
+
+                <div class="calendar-stats">
+                    <span class="stats-number" id="statsNumber">0</span>
+                    <span id="statsText">יומנים מוצגים</span>
+                </div>
+            </div>
+
+            <div class="calendar-display" id="calendarDisplay">
+                <div class="loading">
+                    טוען יומן...
+                    <div class="loading-spinner"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- מודאל הוספת אירוע -->
+    <div class="modal" id="addEventModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">הוספת אירוע חדש</h3>
+                <button class="modal-close" onclick="closeAddEventModal()">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="approval-notice">
+                <div class="approval-notice-title">
+                    <svg fill="currentColor" viewBox="0 0 24 24" width="20" height="20">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                    חשוב לדעת
+                </div>
+                <div class="approval-notice-text">
+                    <strong>האירוע שלך יעבור בדיקה ואישור ידני.</strong><br>
+                    לאחר מילוי הטופס, האירוע יישלח לבדיקה של מנהלי המערכת. רק לאחר אישורם האירוע יופיע ביומן הציבורי. תהליך האישור יכול לקחת מספר דקות או שעות.
+                </div>
+            </div>
+
+            <div class="form-container">
+                <iframe 
+                    src="https://docs.google.com/forms/d/e/1FAIpQLSd6RZ993lFOeyjSGd4laqz7zD7SOtkPNkLyGyPrvRU--IPHSw/viewform?embedded=true" 
+                    class="form-iframe"
+                    frameborder="0" 
+                    marginheight="0" 
+                    marginwidth="0">
+                    טוען...
+                </iframe>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
